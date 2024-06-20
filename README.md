@@ -1,6 +1,6 @@
 <h1>GPT2 Training and Architecture Reproduction</h1>
 
-Followed along Karpathy's gpt2 reproduction, and there's a lot to learn here, really thankful. /n
+Followed along Karpathy's gpt2 reproduction, and there's a lot to learn here, really thankful. \n 
 This approach uses Pytorch, and is a decoder only architecture. Tokens are trained to get the logits (B,T,C). 
 The activation function used here is GELU (Better than RELU cause it isn't 0 when the neuron isn't fired).
 Parameters are shared at word embedding stage and at the classifcation stage(at the end).
