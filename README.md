@@ -6,9 +6,14 @@ This approach uses Pytorch, and is a decoder only architecture. Tokens are train
 The activation function used here is GELU (Better than RELU cause it isn't 0 when the neuron isn't fired).
 Parameters are shared at word embedding stage and at the classifcation stage(at the end).
 Residuals have a slightly different connection.
+
 Quantisation is really important as it affects training times, TF32 -> Bfloat16 makes a difference, but not so much in accuracy with the resources we have. 
 Learning Rate decays in a cosine fashion after a warmp up. Weight decays are also used with the adam optimser. 
+
 torch.compile() makes a huge difference to training time as data is not passed to the HMB, but instead kept on the GPU.
 Adjust Batch Size according to your GPU and make sure it doesn't overload. 
+
 Gradients are accumulated to match the batch size
 Distributed Data Processing is used, you can use multiple GPUs and then average the gradients with dist.allReduce(), make sure the batches trained are different.
+
+Data used to train was FineWebToken, and hellaswag was used an eval method. I couldn't possibly train all these billions of tokens but the results are very very promising from what we can see. 
